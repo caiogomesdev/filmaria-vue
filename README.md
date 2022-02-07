@@ -4,7 +4,8 @@
 </div>
 
 # filmaria
-Projeto prático do curso de vue do Sujeito Programador. Contém rotas, componentização e requisições HTTP.
+Projeto prático do curso de vue do Sujeito Programador. Contém rotas, componentização e requisições HTTP. <br />
+[Link da aplicação](http://filmaria.caiogomesdev.link)
 ## Get started
 ```
 # Instale todas as dependências:
