@@ -39,10 +39,9 @@ a{
     border-radius: 3px;
     font-weight: bold;
     height: 25px;
-    transition: all ease-in-out .5s;
+    transition: all ease-in-out .4s;
     background-color: transparent;
     color: #FFF;
-    box-shadow: 0px 2px 15px rgba(0,0,0,.1);
 }
 .actived{
     display: flex;
