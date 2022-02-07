@@ -1,7 +1,9 @@
 <template>
   <div id="salvos">
       <h2>Meus filmes</h2>
-      <ul>
+      <div class="content">
+      <p class="noitems" v-if="list < 1">Você não tem filmes salvos.</p>
+      <ul v-else>
         <li v-for="item in list" :key="item.id">
           <strong>{{item.nome}}</strong>
           <div class="buttons">
@@ -10,6 +12,7 @@
           </div>
         </li>
       </ul>
+      </div>
   </div>
 </template>
 
@@ -42,11 +45,16 @@ export default {
   align-items: center;
   width: 100%;
 }
-ul {
-  list-style: none;
+.content{
   width: 80%;
   max-width: 450px;
   margin-top: 20px;
+}
+.noitems{
+  text-align: center;
+}
+ul {
+  list-style: none;
 }
 ul li{
   display: flex;

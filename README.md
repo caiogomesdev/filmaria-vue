@@ -1,24 +1,23 @@
+<div align="center">
+eae</div>
+
 # filmaria
 
-## Project setup
+## Get started
 ```
-npm install
-```
+# Instale todas as dependências:
+$ npm install
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# Para desenvolvimento:
+$ npm run serve
 
-### Compiles and minifies for production
+# Para produção:
+$ npm run build
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Tecnologias
+* html
+* css
+* javascript
+* vue
+* vue-router
+* axios
