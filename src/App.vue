@@ -15,3 +15,13 @@ import Header from './components/Header.vue'
 
   }
 </script>
+
+<style>
+  #app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex:1 ;
+  }
+</style>
