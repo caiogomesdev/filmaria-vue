@@ -1,8 +1,10 @@
 <div align="center">
-eae</div>
+<img src="./github/projeto.gif" />
+
+</div>
 
 # filmaria
-
+Projeto prático do curso de vue do Sujeito Programador. Contém rotas, componentização e requisições HTTP.
 ## Get started
 ```
 # Instale todas as dependências:
