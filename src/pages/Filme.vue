@@ -10,7 +10,7 @@
         <p>{{filme.sinopse}}</p>
         <div class="buttons">
             <router-link :to="{name: 'home'}" tag="button">Ver mais filmes</router-link>
-            <button @click="save">Salvar</button>
+            <button @click="save" :class="{active : isSave}">{{isSave ? 'Remover' : 'Salvar'}}</button>
             
             <a :href="`https://www.youtube.com/results?search_query=${filme.nome}`" target="_blank">
                 <button>
@@ -36,12 +36,27 @@ export default {
     data(){
         return{
             filme: [],
-            isLoading: true
+            isLoading: true,
+            filmesSalvos: [],
+            isSave: false
         }
     },
     methods: {
         save(){
-            console.log('Salvou')
+            if(!this.filmesSalvos.find(item => item.id === this.id)){
+                this.filmesSalvos.push(this.filme)
+                this.isSave = true
+            }
+            else{
+                this.filmesSalvos.splice(this.filmesSalvos.indexOf(this.id),1)
+                this.isSave = false
+            }
+            localStorage.setItem("filmes-salvos", JSON.stringify(this.filmesSalvos))
+        },
+            getFilmesSalvos(){
+            const ls = JSON.parse(localStorage.getItem("filmes-salvos"))
+            this.filmesSalvos = ls || []
+            this.isSave = this.filmesSalvos.find(item => item.id === this.id)
         }
     },
     async created(){
@@ -49,7 +64,8 @@ export default {
         const response = await api.get(`?api=filmes/${this.id}`);
         this.filme = response.data;
         this.isLoading = false;
-    }
+        this.getFilmesSalvos();
+    },
 }
 </script>
 
@@ -95,7 +111,7 @@ button{
     border-radius: 4px;
     transition: all ease-in-out .1s;
 }
-button:hover{
+button:hover, .active{
     background-color: brown;
     color: #FFF;
 
@@ -104,4 +120,5 @@ a{
     color: #000;
     text-decoration: none;
 }
+
 </style>

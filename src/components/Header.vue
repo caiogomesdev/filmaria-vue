@@ -40,12 +40,11 @@ a{
     font-weight: bold;
     height: 25px;
     transition: all ease-in-out .5s;
-    background-color: #FFF;
-    box-shadow: 0px 2px 15px rgba(0,0,0,.2);
+    background-color: transparent;
+    color: #FFF;
+    box-shadow: 0px 2px 15px rgba(0,0,0,.1);
 }
 .actived{
-    background-color: transparent;
-    color: #fff;
     display: flex;
     align-items: flex-end;
     padding-bottom: 3px;
