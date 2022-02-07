@@ -1,17 +1,17 @@
 <template>
   <div id="home">
       <div class="lista-filmes">
-
-        <div class="loading" v-if="isLoadding">
-          <img src="../assets/loading-buffering.gif" alt="">
-        </div>
-        <div v-else>
-          <article v-for="item in filmes" :key="item.id" class="filme" >
-            <strong class="title">{{item.nome}}</strong>
-            <img :src="item.foto" :alt="item.nome" />
-            <router-link to="/" class="btn-acessar">Acessar</router-link>
-          </article>
-        </div>
+          
+      <div class="loading" v-if="isLoadding">
+        <Loading />
+      </div>
+      <div v-else>
+        <article v-for="item in filmes" :key="item.id" class="filme" >
+          <strong class="title">{{item.nome}}</strong>
+          <img :src="item.foto" :alt="item.nome" />
+          <router-link :to="{name: 'filme', params: {id: item.id}}" class="btn-acessar">Acessar</router-link>
+        </article>
+      </div>
         
 
       </div>
@@ -20,6 +20,7 @@
 
 <script>
 import Api from '../services/api'
+import Loading from '../components/Loading.vue'
 export default {
     name: "home",
     data(){
@@ -27,6 +28,9 @@ export default {
         filmes: [],
         isLoadding: true,
       }
+    },
+    components: {
+      Loading
     },
     async created(){
       this.isLoadding = true;
@@ -39,9 +43,6 @@ export default {
 
 <style scoped>
 
-.loading img{
-  height: 60px;
-}
 .filme:not(:first-child){
   margin-top: 20px;
 }
