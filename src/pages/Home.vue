@@ -7,9 +7,9 @@
         </div>
         <div v-else>
           <article v-for="item in filmes" :key="item.id" class="filme" >
-            <strong>{{item.nome}}</strong>
-            <img :src="item.foto" alt="Capa" />
-            <router-link to="/">Acessar</router-link>
+            <strong class="title">{{item.nome}}</strong>
+            <img :src="item.foto" :alt="item.nome" />
+            <router-link to="/" class="btn-acessar">Acessar</router-link>
           </article>
         </div>
         
@@ -30,9 +30,8 @@ export default {
     },
     async created(){
       this.isLoadding = true;
-      const api = await Api.get('?api=filmes')
-      this.filmes = api.data || [];
-      console.log(this.filmes)
+      const response = await Api.get('?api=filmes')
+      this.filmes = response.data || [];
       this.isLoadding = false;
     }
 }
@@ -42,5 +41,32 @@ export default {
 
 .loading img{
   height: 60px;
+}
+.filme:not(:first-child){
+  margin-top: 20px;
+}
+.filme{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 20px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+}
+.filme .title{
+  margin-bottom: 15px;
+}
+.filme .btn-acessar{
+  background-color: brown;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: #FFF;
+  text-decoration: none;
+  border-radius: 0px 0px 10px 10px;
+  font-size: 18px;
 }
 </style>
