@@ -70,4 +70,7 @@ export default {
   border-radius: 0px 0px 10px 10px;
   font-size: 18px;
 }
+img {
+  width: 100%;
+}
 </style>
