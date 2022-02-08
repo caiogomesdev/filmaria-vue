@@ -3,7 +3,7 @@
       <div class="loading" v-if="isLoading">
           <Loading />
       </div>
-      <div class="container" v-else>
+      <div class="container" v-else-if="!isLoading && !Array.isArray(this.filme)">
         <h2 class="title">{{filme.nome}}</h2>
         <img :src="filme.foto" alt="">
         <h3>Sinopse</h3>
@@ -11,7 +11,6 @@
         <div class="buttons">
             <router-link :to="{name: 'home'}" tag="button">Ver mais filmes</router-link>
             <button @click="save" :class="{active : isSave}">{{isSave ? 'Remover' : 'Salvar'}}</button>
-            
             <a :href="`https://www.youtube.com/results?search_query=${filme.nome}`" target="_blank">
                 <button>
                     Trailer
@@ -20,7 +19,9 @@
 
         </div>
       </div>
-      
+      <div v-else align="center">
+          <h2>Filme não encontrado :(</h2>
+      </div>
   </div>
 </template>
 
@@ -35,7 +36,7 @@ export default {
     },
     data(){
         return{
-            filme: [],
+            filme: undefined,
             isLoading: true,
             filmesSalvos: [],
             isSave: false
@@ -54,9 +55,8 @@ export default {
             localStorage.setItem("filmes-salvos", JSON.stringify(this.filmesSalvos))
         },
             getFilmesSalvos(){
-            const ls = JSON.parse(localStorage.getItem("filmes-salvos"))
-            this.filmesSalvos = ls || []
-            this.isSave = this.filmesSalvos.find(item => item.id === this.id)
+            this.filmesSalvos = JSON.parse(localStorage.getItem("filmes-salvos")) || []
+            this.isSave = this.filmesSalvos.some(item => item.id == this.id)
         }
     },
     async created(){
@@ -64,6 +64,7 @@ export default {
         const response = await api.get(`?api=filmes/${this.id}`);
         this.filme = response.data;
         this.isLoading = false;
+        
         this.getFilmesSalvos();
     },
 }
@@ -101,6 +102,8 @@ h3 {
 }
 .buttons{
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
 }
 button{
     cursor: pointer;
